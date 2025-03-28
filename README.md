@@ -1,7 +1,7 @@
 # SEF_UNet
 SEF_UNet-A UNet algorithm for corn leaf spot segmentation
 ## 一、简介
-我们构建了包含 857 幅图像的病叶数据集，并提出了一种高可用性玉米叶斑病分割算法 SEF-UNet。该算法基于 Res-UNet 结构，融合 SElayer 和 ELA 注意力机制，并设计特征融合网络(fusenet)以增强多层特征利用。实验结果表明，SEF-UNet 在 平均联合交集（mIOU）、平均像素准确率（mPA）、平均精度（mPrecision）和平均召回率（mRecall）方面分别达到 92.62%、95.74%、96.63% 和 95.64%。与 U主流方法对比，SEF-UNet 显著提升了病叶图像分割精度，为病害监测和严重程度评估提供了有效技术支持。
+我们构建了包含 857 幅图像的病叶数据集，并提出了一种高可用性玉米叶斑病分割算法 SEF-UNet。该算法基于 Res-UNet 结构，融合 SElayer 和 ELA 注意力机制，并设计特征融合网络(fusenet)以增强多层特征利用。实验结果表明，SEF-UNet 在 平均联合交集（mIOU）、平均像素准确率（mPA）、平均精度（mPrecision）和平均召回率（mRecall）方面分别达到 92.62%、95.74%、96.63% 和 95.64%。与主流方法对比，SEF-UNet 显著提升了病叶图像分割精度，为病害监测和严重程度评估提供了有效技术支持。
 ## 二、项目目录介绍
 - Medical_Datasets ---存储医药的数据集
 - R_miou_out       --- 模型训练后运行get_miou.py所得的文件，该文件是为了与miou_out区分重命名的
