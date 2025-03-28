@@ -298,3 +298,8 @@ SE 层仅置于 ResNet50 网络的瓶颈区（图 5），以最大限度地提�
 本研究构建了一个大规模的玉米叶片病害数据集，为作物病害领域的视觉研究提供了重要的数据支持。我们提出了一种针对玉米叶片叶斑病的高可用性分割算法，称为 SEF-UNet，它使用 Res-UNet 作为骨干网络。该算法参考了 SElayer 和 ELA（Efficient Local Attention，高效局部注意力）。同时，我们还实现了一个以各层输出为重点的特征融合网络。在训练阶段，我们采用骰子损失（Dice Loss）和交叉熵损失（CE Loss）的组合作为损失函数。
 实验结果表明，与原始网络相比，本文提出的方法在mIOU、mPA、mPrecision和mRecall等指标上分别提高了1.11%、3.41%、1.06%和2.33%。同时，与主流的语义分割算法相比，SEF-UNet 的性能都有很大提高。这项研究为农业领域的智能病害监测提供了有效的工具和方法。
 本研究提出了一种高精度玉米病叶分割算法。它可以为相关研究人员提供一种准确、快速计算玉米叶片面积和病斑面积的方法。它还可以帮助农民在农业生产中准确识别玉米叶斑病，初步帮助农民评估病害的严重程度，实现精准防控，减少病害蔓延造成的损失。
+### 引用
+https://github.com/bubbliiiing/unet-pytorch  
+Hu, J., Shen, L., Sun, G., 2018. Squeeze-and-excitation networks, Proceedings of the IEEE conference on computer vision and pattern recognition, pp. 7132-7141  
+Xu, W., Wan, Y., 2024. ELA: Efficient Local Attention for Deep Convolutional Neural Networks. arXiv preprint arXiv:2403.01123.  
+
