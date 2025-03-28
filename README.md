@@ -24,7 +24,7 @@ SEF_UNet-A UNet algorithm for corn leaf spot segmentation
 ## 三、模型训练
 ### 准备工作
 #### 下载所需的包库
-`Pip install -r requirements.txt`
+`pip install -r requirements.txt`
 #### 下载权重文件
 [unet_vgg_voc.pth](https://github.com/bubbliiiing/unet-pytorch/releases/download/v1.0/unet_vgg_voc.pth)  
 [unet_resnet_voc.pth](https://github.com/bubbliiiing/unet-pytorch/releases/download/v1.0/unet_resnet_voc.pth)  
@@ -42,9 +42,11 @@ SEF_UNet-A UNet algorithm for corn leaf spot segmentation
 |:--:|
 | **图1.数据集中的原始图像和数据增强后的相应图像** |
 -------
-| ![图2.原始图像和标注真实的样本](/paper_img/2.png) |
+
+| <img src="/paper_img/2.png" alt="图2.原始图像和标注真实的样本" width="500"> |
 |:--:|
-| **图2.原始图像和标注真实的样本** |
+| **图2.原始图像和标注真实的样本** |  
+
 
 
 ### 训练玉米病斑数据集
@@ -85,14 +87,14 @@ U-Net 的分割精度受到限制，这主要是由于病变与土壤之间的�
 
 SE 层仅置于 ResNet50 网络的瓶颈区（图 5），以最大限度地提高速度和精度。具体来说，SE 模块是在瓶颈单元的 conv3x3 运算之后添加的，缩减系数为 8 (r=8)。  
 
-|![图5.瓶颈设计](/paper_img/5.png)|
+|<img src="/paper_img/5.png" alt="图5.瓶颈设计" width="230">|
 |:--:|
 | **图5.瓶颈设计** |
 
 #### 层级连接中的ELA注意力
 为了尽量减少外来背景噪声对分割结果的影响，我们在级联拼接过程的每一层都加入了 ELA 注意模块
 
-|![图6.ELA结构](/paper_img/6.png)|
+|<img src="/paper_img/6.png" alt="图6.ELA结构" width="400">|
 |:--:|
 | **图6.ELA结构** |
 
@@ -112,7 +114,7 @@ SE 层仅置于 ResNet50 网络的瓶颈区（图 5），以最大限度地提�
 ### 结果
 #### SEF_UNet模型的训练
 
-|![图9.SEF-UNet的损失值随迭代次数变化的曲线](/paper_img/9.jpg)|
+|<img src="/paper_img/9.jpg" alt="图9.SEF-UNet的损失值随迭代次数变化的曲线" width="640">|
 |:--:|
 | **图9.SEF-UNet的损失值随迭代次数变化的曲线** |
 <table>
@@ -269,7 +271,7 @@ SE 层仅置于 ResNet50 网络的瓶颈区（图 5），以最大限度地提�
 
 #### 与原始模型的比较
 
-|![图10.训练数据的mIOU箱线图](/paper_img/10.png)|
+|<img src="/paper_img/10.png" alt="图10.训练数据的mIOU箱线图" width="640">|
 |:--:|
 | **图10.训练数据的mIOU箱线图** |
 ---------
@@ -288,7 +290,7 @@ SE 层仅置于 ResNet50 网络的瓶颈区（图 5），以最大限度地提�
 |:--:|
 | **图13.不同模型的mIOU比较** |
 --------
-|![图14.与其他分割模型的对比](/paper_img/14.jpg)|
+|<img src="/paper_img/14.jpg" alt="图14.与其他分割模型的对比" width="640">|
 |:--:|
 | **图14.与其他分割模型的对比** |
 
