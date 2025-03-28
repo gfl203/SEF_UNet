@@ -26,74 +26,95 @@ SEF_UNet-A UNet algorithm for corn leaf spot segmentation
 #### 下载所需的包库
 `Pip install -r requirements.txt`
 #### 下载权重文件
-[unet_vgg_voc.pth](https://github.com/bubbliiiing/unet-pytorch/releases/download/v1.0/unet_vgg_voc.pth)
-[unet_resnet_voc.pth](https://github.com/bubbliiiing/unet-pytorch/releases/download/v1.0/unet_resnet_voc.pth)
-下载好后放置于model_data文件夹中(没有新建)
+[unet_vgg_voc.pth](https://github.com/bubbliiiing/unet-pytorch/releases/download/v1.0/unet_vgg_voc.pth)  
+[unet_resnet_voc.pth](https://github.com/bubbliiiing/unet-pytorch/releases/download/v1.0/unet_resnet_voc.pth)  
+下载好后放置于model_data文件夹中(没有新建)  
 [best_epoch_weights.pth]( https://pan.baidu.com/s/13icThQWRslez7DdgAybZNw?pwd=1234)
-该权重为模型修改后训练玉米病斑数据集得到的
+该权重为模型修改后训练玉米病斑数据集得到的  
 #### 所需环境
-[torch == 1.9.0](https://pan.baidu.com/s/1QH04503MJxWc8KIcopxkzA?pwd=1234) 
-[torchvision == 0.10.0](https://pan.baidu.com/s/1AYb5ryFrBDQsvP-ubVes3A?pwd=1234)
+[torch == 1.9.0](https://pan.baidu.com/s/1QH04503MJxWc8KIcopxkzA?pwd=1234)   
+[torchvision == 0.10.0](https://pan.baidu.com/s/1AYb5ryFrBDQsvP-ubVes3A?pwd=1234)  
 适用于3060显卡，cuda11.1
 #### 玉米数据集
-[Corn leaf Spot.zip](https://pan.baidu.com/s/1Z3Pe2vTh_EsJo549Rb9aqQ?pwd=1234)
+[Corn leaf Spot.zip](https://pan.baidu.com/s/1Z3Pe2vTh_EsJo549Rb9aqQ?pwd=1234)  
 
-![图1.数据集中的原始图像和数据增强后的相应图像](/paper_img/1.jpg)
+|![图1.数据集中的原始图像和数据增强后的相应图像](/paper_img/1.jpg)|
+|:--:|
+| **图1.数据集中的原始图像和数据增强后的相应图像** |
+-------
+| ![图2.原始图像和标注真实的样本](/paper_img/2.png) |
+|:--:|
+| **图2.原始图像和标注真实的样本** |
 
-![图2.原始图像和标注真实的样本](/paper_img/2.png#pic_right)
+
 ### 训练玉米病斑数据集
-1、将我提供的voc数据集放入VOCdevkit/VOC2007中（无需运行voc_annotation.py）。
-2、运行train.py进行训练，默认参数已经对应voc数据集所需要的参数了。
+1、将我提供的voc数据集放入VOCdevkit/VOC2007中（无需运行voc_annotation.py）。  
+2、运行train.py进行训练，默认参数已经对应voc数据集所需要的参数了。  
 ### 训练自己的数据集
-1、本文使用VOC格式进行训练。
-2、训练前将标签文件放在VOCdevkit文件夹下的VOC2007文件夹下的SegmentationClass中。
-3、训练前将图片文件放在VOCdevkit文件夹下的VOC2007文件夹下的JPEGImages中。
-4、在训练前利用voc_annotation.py文件生成对应的txt。
-5、unet.py中的num_classes为分类个数+1，model_path选择下载好的权重路径，做预测时可改为自己的
-6、train.py的num_classes为分类个数+1，model_path选择下载好的权重路径
-7、运行train.py即可开始训练。
+1、本文使用VOC格式进行训练。  
+2、训练前将标签文件放在VOCdevkit文件夹下的VOC2007文件夹下的SegmentationClass中。  
+3、训练前将图片文件放在VOCdevkit文件夹下的VOC2007文件夹下的JPEGImages中。  
+4、在训练前利用voc_annotation.py文件生成对应的txt。  
+5、unet.py中的num_classes为分类个数+1，model_path选择下载好的权重路径，做预测时可改为自己的  
+6、train.py的num_classes为分类个数+1，model_path选择下载好的权重路径  
+7、运行train.py即可开始训练。  
 ### 获取IOU等数据
-1、unet.py中的model_path选择训练好的最好权重
-2、get_miou.py中修改name_classes、num_class
-3、运行get_miou.py
-### 预测
-1、unet.py中的model_path选择训练好的最好权重
-2、predict.py中修改name_classes
-3、运行predict.py
+1、unet.py中的model_path选择训练好的最好权重  
+2、get_miou.py中修改name_classes、num_class  
+3、运行get_miou.py  
+### 预测 
+1、unet.py中的model_path选择训练好的最好权重  
+2、predict.py中修改name_classes  
+3、运行predict.py  
 ### 分割模型
-U-Net 的分割精度受到限制，这主要是由于病变与土壤之间的颜色相似，以及病变通常具有的不规则形状和模糊边界。
-深度是捕捉更精细特征信息并避免假阳性和假阴性等问题的关键因素之一。因此，我们选择了 ResNet50-Unet 基础网络。
-在选择网络深度时，平衡性能和计算资源消耗至关重要。虽然有更深的 ResNet 网络，但考虑到后续轻量级部署的可能性，我们选择了 ResNet50，以在性能和资源利用率之间取得平衡。
-![图3.Resnet50-UNet](/paper_img/3.jpg)
+U-Net 的分割精度受到限制，这主要是由于病变与土壤之间的颜色相似，以及病变通常具有的不规则形状和模糊边界。  
+深度是捕捉更精细特征信息并避免假阳性和假阴性等问题的关键因素之一。因此，我们选择了 ResNet50-Unet 基础网络。  
+在选择网络深度时，平衡性能和计算资源消耗至关重要。虽然有更深的 ResNet 网络，但考虑到后续轻量级部署的可能性，我们选择了 ResNet50，以在性能和资源利用率之间取得平衡。  
+
+| ![图3.Resnet50-UNet](/paper_img/3.jpg)|
+|:--:|
+| **图3.Resnet50-UNet** |
+
 ### 提出的模型
 #### 编码器中的SElayer
-为了获得更复杂的目标细节，同时有效过滤掉来自其他通道的无关信息，我们在编码器中引入了注意力网络 SElayer。这意味着它被嵌入到 Resnet50 中。
+为了获得更复杂的目标细节，同时有效过滤掉来自其他通道的无关信息，我们在编码器中引入了注意力网络 SElayer。这意味着它被嵌入到 Resnet50 中。  
 
-![图4.SElayer的结构图](/paper_img/4.png)
+|![图4.SElayer的结构图](/paper_img/4.png)|
+|:--:|
+| **图4.SElayer的结构图** |
 
-SE 层仅置于 ResNet50 网络的瓶颈区（图 5），以最大限度地提高速度和精度。具体来说，SE 模块是在瓶颈单元的 conv3x3 运算之后添加的，缩减系数为 8 (r=8)。
+SE 层仅置于 ResNet50 网络的瓶颈区（图 5），以最大限度地提高速度和精度。具体来说，SE 模块是在瓶颈单元的 conv3x3 运算之后添加的，缩减系数为 8 (r=8)。  
 
-![图5.瓶颈设计](/paper_img/5.png)
+|![图5.瓶颈设计](/paper_img/5.png)|
+|:--:|
+| **图5.瓶颈设计** |
 
 #### 层级连接中的ELA注意力
 为了尽量减少外来背景噪声对分割结果的影响，我们在级联拼接过程的每一层都加入了 ELA 注意模块
 
-![图6.ELA结构](/paper_img/6.png)
+|![图6.ELA结构](/paper_img/6.png)|
+|:--:|
+| **图6.ELA结构** |
 
 #### 特征融合网络（FuseNet）
 该结构采用侧向连接（Lateral Connection）方法将解码器部分的四个特征图输出融合在一起。这种方法有效地保留了不同尺度的信息，提高了模型的信息利用效率。通过融合多个特征图，提高了模型的泛化能力，增加了最终输出的分辨率，降低了过拟合的风险。
 
-![图7.FuseNet模型结构](/paper_img/7.png)
+|![图7.FuseNet模型结构](/paper_img/7.png)|
+|:--:|
+| **图7.FuseNet模型结构** |
 
 #### SEF_UNet
 
-![图8.SEF-UNet结构](/paper_img/8.png)
+|![图8.SEF-UNet结构](/paper_img/8.png)|
+|:--:|
+| **图8.SEF-UNet结构** |
 
 ### 结果
 #### SEF_UNet模型的训练
 
-![图9.SEF-UNet的损失值随迭代次数变化的曲线](/paper_img/9.jpg)
-
+|![图9.SEF-UNet的损失值随迭代次数变化的曲线](/paper_img/9.jpg)|
+|:--:|
+| **图9.SEF-UNet的损失值随迭代次数变化的曲线** |
 <table>
     <caption><strong>表4. 测试集中混淆矩阵分析的统计参数</strong></caption>
     <tr align="center">
@@ -248,13 +269,28 @@ SE 层仅置于 ResNet50 网络的瓶颈区（图 5），以最大限度地提�
 
 #### 与原始模型的比较
 
-![图10.训练数据的mIOU箱线图](/paper_img/10.png)
-![图11. 不同模型下各种结果的折线图](/paper_img/11.png)
-![图12. 与原始模型分割结果的对比](/paper_img/12.jpg)
+|![图10.训练数据的mIOU箱线图](/paper_img/10.png)|
+|:--:|
+| **图10.训练数据的mIOU箱线图** |
+---------
+|![图11. 不同模型下各种结果的折线图](/paper_img/11.png)|
+|:--:|
+| **图11. 不同模型下各种结果的折线图** |
+---------
+|![图12. 与原始模型分割结果的对比](/paper_img/12.jpg)|
+|:--:|
+| **图12. 与原始模型分割结果的对比** |
+
 
 #### 与其他分割算法的实验结果对比
-![图13.不同模型的mIOU比较](/paper_img/13.jpg)
-![图14.与其他分割模型的对比](/paper_img/14.jpg)
+
+|![图13.不同模型的mIOU比较](/paper_img/13.jpg)|
+|:--:|
+| **图13.不同模型的mIOU比较** |
+--------
+|![图14.与其他分割模型的对比](/paper_img/14.jpg)|
+|:--:|
+| **图14.与其他分割模型的对比** |
 
 ### 总结
 本研究构建了一个大规模的玉米叶片病害数据集，为作物病害领域的视觉研究提供了重要的数据支持。我们提出了一种针对玉米叶片叶斑病的高可用性分割算法，称为 SEF-UNet，它使用 Res-UNet 作为骨干网络。该算法参考了 SElayer 和 ELA（Efficient Local Attention，高效局部注意力）。同时，我们还实现了一个以各层输出为重点的特征融合网络。在训练阶段，我们采用骰子损失（Dice Loss）和交叉熵损失（CE Loss）的组合作为损失函数。
